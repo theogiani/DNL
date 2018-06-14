@@ -1,0 +1,109 @@
+<html>
+	<head>
+		<meta charset="utf-8">	
+		<title>Formulaire : Expériences de DNL</title>
+		<link rel="stylesheet" type="text/css" href="styles/styles.css">
+	</head>
+
+	<body>
+		<form method="POST" 
+			action="newcollegue.php" style="background-color:rgba(100, 149, 237, 0.3); width: 700px; padding-left: 10px;padding-right: 10px; padding-top: 1px; border-radius: 16px; border: 2px solid #ffffff;">
+
+			<p style="text-indent:20px;">A des fins d'études statistiques et pédagogiques, je vous propose de remplir le formulaire suivant qui me permettra peut être de publier un portrait, même très partiel, des enseignants qui interviennent en DNL anglais - math (ou sciences expérimentales) </p>
+			<p style="text-indent:20px;">Vos informations personnelles (nom/e-mail) resteront parfaitement confidentielles et ne seront jamais publiées.</p>
+
+			<fieldset style="width: 650px; margin-bottom: 20px;">
+				<legend><center>Données personnelles</center></legend>
+				<!-- Coordonnées personnelles -->
+				<p>
+					Nom* : <input type="text" name="Nom" placeholder="Dupond" required  />  
+					Prénom : <input type="text" name="Prenom" placeholder="Jean" />
+				</p>
+				<p>Mail* : <input type="email" name="email" size="30" placeholder="jean.dupond@monfai.fr" required/></p>
+			</fieldset>
+
+			<fieldset style="width: 600px;">
+				<legend><center>Expérience avec la DNL</center></legend>
+				<!-- Un menu déroulant pour l'académie -->
+				<p>
+					<label for="academie" required>Dans quelle académie exercez vous ? </label>
+					<select name="academie" id="academie">
+						<option value="Clermont-Ferrand">1 : Clermont-Ferrand</option>
+						<option value="Grenoble">2 : Grenoble</option>
+						<option value="Lyon">3 : Lyon</option>
+						<option value="Besançon">4 : Besançon</option>
+						<option value="Dijon">5 : Dijon</option>
+						<option value="Rennes">6 : Rennes</option>
+						<option value="Orléans-Tours">7 : Orléans-Tours</option>
+						<option value="Corse">8 : Corse</option>
+						<option value="Nancy-Metz">9 : Nancy-Metz</option>
+						<option value="Reims">10 : Reims</option>
+						<option value="Strasbourg">11 : Strasbourg</option>
+						<option value="Guadeloupe">12 : Guadeloupe</option>
+						<option value="Guyane">13 : Guyane</option>
+						<option value="Amiens">14 : Amiens</option>
+						<option value="Lille">15 : Lille</option>
+						<option value="Créteil">16 : Créteil</option>
+						<option value="Paris">17 : Paris</option>
+						<option value="Versailles">18 : Versailles</option>
+						<option value="Martinique">19 : Martinique</option>
+						<option value="Caen">20 : Caen</option>
+						<option value="Rouen">21 : Rouen</option>
+						<option value="Bordeaux">22 : Bordeaux</option>
+						<option value="Limoges">23 : Limoges</option>
+						<option value="Poitiers">24 : Poitiers</option>
+						<option value="Montpellier">25 : Montpellier</option>
+						<option value="Toulouse">26 : Toulouse</option>
+						<option value="Nantes">27 : Nantes</option>
+						<option value="Aix-Marseille">28 : Aix-Marseille</option>
+						<option value="Nice">29 : Nice</option>
+						<option value="La Reunion">30 : La Réunion</option>
+						<option value="Etranger">31 : Etranger</option>
+					</select>
+				</p>
+				<p>
+					Depuis combien d'années enseignez vous la DNL : 
+					<input type="number" name="duree" min="0" max="20" value=0 style="width: 52px;"/>
+				</p>
+				<p>
+					Quel est l'effectif de votre classe : 
+					<input type="number" name="effectif" min="0" max="45" value=0  style="width: 52px;"/>
+				</p>
+
+				<label for="matiere" required>Quelle matière enseignez vous : </label>
+				<select name="matiere" id="matiere" >
+					<option value="Mathématique">1 : Mathématiques</option>
+					<option value="Sciences Physiques">2 : Sciences Physiques</option>
+					<option value="SVT">3 : SVT</option>
+				</select><br/>
+
+				<p><label for="niveau" required>Quel est votre niveau en Anglais : </label>				
+					<input type="radio" name="niveau" value="A1"/>A1
+					<input type="radio" name="niveau" value="A2"/>A2
+					<input type="radio" name="niveau" value="B1"/>B1
+					<input type="radio" name="niveau" value="B2" checked/>B2
+					<input type="radio" name="niveau" value="C1"/>C1
+					<input type="radio" name="niveau" value="C2"/>C2
+				</p>
+
+				<p>
+					<label for="corps">Vous êtes : </label>
+					<select name="corps" id="corps">
+						<option value="Agrégé">1 : Agrégé</option>
+						<option value="Certifié">2 : Certifié</option>
+						<option value="Autre">3 : Autre</option>
+					</select>
+				</p>
+
+				<p>Vous enseignez en
+					<input type="checkbox" name="etablissement[]" value="Lycée général" />Lycée Général
+					<input type="checkbox" name="etablissement[]" value="Lycée professionnel" />Lycée Professionnel
+					<input type="checkbox" name="etablissement[]" value="Collège" />Collège
+				</p>
+			</fieldset>
+			<p style="text-align: center; padding-bottom: 10px;">
+				<input type="submit" name="envoi">
+			</p>
+		</form>
+	</body>
+</html>

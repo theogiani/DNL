@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="utf-8">	
+		<link rel="stylesheet" type="text/css" href="styles/styles.css">
+		<script type="text/Javascript">
+            
+        </script>
+	</head>
+	<body>
+		<h1 >A small quizz</h1>
+
+		<div id="presentation">
+			<p>	You will have to answer ten questions on mental arithmetic,
+			 all of them bearing on multiplications of two digits integers.
+			</p>
+			<p>	You have 45 seconds to answer each question, you loose 1 point
+			 every time you give a wrong answer but you can try again until
+			  you run out of time.
+			</p>
+			<p>	If you dont get the right answer by the end of the 45s,
+			 you loose two points. The correct answer is then displayed
+			  for three seconds.
+			</p>
+			</p>When you get the right answer, all the remaining seconds
+			 are added to your score.
+			</p>
+			<p>
+				Here are a few tips to help you :
+				<ul>
+					<li><b>multiples of 10 </b>
+					: 23 x 40 = 23 x 4 x 10 = 92 x 10 = 920</li>
+					<li><b>multiples of 5 </b>
+					: 25 x 32 = 10 x 5 x 32 : 2 = 10 x 5 x 16 = 800</li>
+					<li><b>multiples of 11 </b>
+					: 17 x 33 = 17 x 11 x 3 = 187 x 3 = 561</li>
+					<li><b>special products </b>:
+					<ul>
+						<li>49 x 51 = (50 - 1) x (50 + 1) = 50^2 - 1 = 2499</li>
+						<li>31 x 31 = (30 + 1)^2 = 30^2 + 2x30 + 1 = 961</li>
+						<li>39 x 39 = (40 - 1)^2 = 40^2 - 2x40 + 1 = 1521</li>
+					</ul> 
+				</ul>
+			</p>
+
+		</div>
+
+		<div style="min-height: 80px">
+		<p class="boutonstart" style="text-align: center;">
+			<button id="starteur" type="button" onclick="debut()">
+				Click here to start the quizz.
+			</button>
+		</p>
+		</div>
+
+		<p style="text-align: center">
+			<span id="question"></span>
+			<input id="reponse" style="display: none" type="text"
+			 placeholder="Your answer here" size="8"/>
+			<button id="sendansw" style="display: none" type="button"
+			 onclick="repondu()">
+				Send answer
+			</button>
+			<span style="display: inline-block;   min-width: 80px;
+			 margin-left: 40px" id="numero"></span>
+		</p>
+
+		<p style="text-align: center; margin-top: 35px">
+			<span style="display: inline-block; min-width: 220px;" id="chrono">
+			</span>
+			<span style="display: inline-block; min-width: 210px;" id="com">
+			</span>
+			<span style="display: inline-block; min-width: 120px;" id="score">
+			</span>
+		</p>				
+
+		<script type="text/javascript">
+			var a, b, nr, nbrQuest, score, secondes;
+			var nbrQuest;			
+			var time = 49;
+			var comTime = -1;
+			var text = ""; 
+
+			function debut(){
+				nbrQuest = 9;
+				score = 0;
+				secondes = time;
+				document.getElementById('starteur').style.display = 'none';
+				document.getElementById('presentation').innerHTML = '';
+				document.getElementById('reponse').style.display = 'inline-block';
+				document.getElementById('sendansw').style.display = 'inline-block';
+				document.getElementById('com').innerHTML = '';
+				nextquest();
+				setInterval('organizer()', 250);										
+			}
+
+			function organizer(){
+				var n;
+				chrono();	
+				document.getElementById('score').innerHTML = "Score : " + score;
+				n = 10 - nbrQuest;
+				if (nbrQuest >= 0){document.getElementById("numero").innerHTML =
+				 "Question N° " + n;}
+				if (comTime > secondes) 
+					{document.getElementById("com").innerHTML = '';}
+				if (parseInt(secondes *10) == 30 && nbrQuest >= 0) {
+					document.getElementById("chrono").innerHTML =
+					 "Sorry, time out !";
+					comTime = secondes - 3;
+					score -= 2;
+					document.getElementById("reponse").value = a * b;
+					document.getElementById("reponse").style.color = 'red';					
+				}
+				if (secondes < 0 && nbrQuest >= 0){					
+					if (nbrQuest > 0){
+						secondes = time;
+						nextquest();
+					}			
+					nbrQuest -= 1;						
+				}
+				if (nbrQuest < 0){document.getElementById("com").innerHTML =
+				 "Game over, play again !";
+				document.getElementById('starteur').style.display = 'inline-block';}
+			}
+
+            function chrono(){                               
+                text = "Remaining time : " + parseInt(secondes - 3) + ' sec';
+                secondes -= 0.25;
+                if (secondes > 3){document.getElementById('chrono').innerHTML = text;}
+            }   
+
+			function nextquest(){
+				chooseNumbers();				
+				var str = a + " x " + b + " = ";				
+				document.getElementById("question").innerHTML = str;
+				document.getElementById("reponse").style.color = 'black';
+				document.getElementById("reponse").placeholder = "Your answer here";
+				document.getElementById("reponse").value = "";				
+				document.getElementById('sendansw').style.display = 'inline-block';
+			}
+
+			function repondu(){
+				if (secondes > 3){
+					var resultat = document.getElementById("reponse").value; 
+					if (resultat == a * b) 
+						{document.getElementById("com").innerHTML = "Well done !";					
+						score += parseInt(secondes);
+						secondes = 3;
+						comTime = 0;
+						document.getElementById('sendansw').style.display = 'none';
+					} else {
+						document.getElementById("com").innerHTML = "Sorry, try again.";
+						comTime = secondes - 2;
+						score -= 1;						
+						document.getElementById("reponse").placeholder =
+						 "Your answer here";
+						document.getElementById("reponse").value = "";						
+					}
+				}
+			}	
+
+			function chooseNumbers(){
+				nr = Math.floor(Math.random() * 90 + 1);
+				switch(nr % 6) {
+			    case 0:
+			        a = Math.floor(Math.random() * 12 + 1) * 5;
+					b = Math.floor(Math.random() * 39 + 11) * 2;
+			        break;
+			    case 1:
+			        a = Math.floor(Math.random() * 8 + 1) * 10 + 1;
+					b = a - 2;
+			        break;
+			    case 2:
+			        a = Math.floor(Math.random() * 8 + 1) * 10 + 1;
+					b = a;
+					break;
+				case 3:
+			        a = Math.floor(Math.random() * 8 + 2) * 10 - 1;
+					b = a;
+					break;
+				case 4:
+			        a = Math.floor(Math.random() * 8 + 1) * 11;
+					b = Math.floor(Math.random() * 8 + 1) * 10 + 1;
+					break;
+				case 5:
+			        a = Math.floor(Math.random() * 8 + 1) * 11;
+					b = Math.floor(Math.random() * 8 + 1) * 10 - 1;
+					break;
+			    }
+			    if (nr > 44){nr = a; a = b; b = nr;}			    
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,113 @@
+/*Une police "British" pour annoncer la couleur*/
+@font-face {
+    font-family: "BlackChancery";
+    src: url('BLKCHCRY.TTF');
+    }  
+
+/*Titre de la page aux couleurs de l'Union Jack*/
+h1 {
+font-size: 32px;
+  text-shadow: -2px -2px #FFFFFF, 1px 2px #C8102E, -2px 0 2px #012169;
+  font-family:BlackChancery, Helvetica;
+  color: #012169;
+  padding:16px;
+  margin-top: 10px;
+  text-align:center;  
+  box-shadow:2px 2px 6px #888; 
+  /*width:850px;*/
+}
+
+h3{
+	margin-top: 35px;
+}
+
+/*Un fond d'écran plutôt scolaire*/
+body {	
+    background-image: url('old_mathematics_@2X.png');
+}
+
+/*Une indentation en début de chaque paragraphe
+et une justification du texte pour une présentation 
+plus soignée*/
+p.contenu, p.abstract {
+	text-indent:20px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/*Limite la largeur du "texte"*/
+div.abstract,div.contenu{
+	width:850px;
+	margin-left: 270px;
+}
+
+/*Le texte affiché se répartit en deux catégories : 
+abstract (qui annonce le plan) et contenu
+J'ai donc créé les deux classes correspondantes.*/
+p.abstract{
+	padding-top: 00px;
+}
+
+/*La classe .clearfix permet d'empêcher les flottants 
+de dépasser de leur conteneur*/
+.clearfix::after{
+	    content: "";
+	    display: block;
+	    clear: both;	    
+}
+
+/*Dans l'abstract je fais flotter les images à droite*/
+img.abstract{
+	float: right;
+	margin-left: 15px;
+}
+
+/*Dans le contenu je fais flotter les images à gauche*/
+img.contenu{
+	float: left;
+	margin-right: 15px;
+	margin-top: 9px;
+	margin-bottom: 6px;
+}
+
+/*.infos{
+	display: inline-block;
+	position :fixed;
+	margin-top:10px;	
+}*/
+
+.infos,.extras{
+	display: inline-block;
+	position :fixed;
+	margin-top:20px;	
+	width:230px;
+	border-radius :5px;
+	box-shadow: 5px 4px 5px 4px rgba(0, 0, 0, .5);
+}
+
+ul.table{
+	margin-top:-15px;
+}
+
+h5.table{
+	margin-top:5px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    border: 3px solid #e2dddd;    
+    tr:nth-child(even) {
+    background-color: #dddddd;
+	}
+}
+
+td, th {	
+	text-align: center;
+	border: 2px solid #ddd5dd;  
+	padding: 5px;  
+}
+
+tr:nth-child(even) {
+    background-color: rgba(200, 200, 200, 0.3);
+}
